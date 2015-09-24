@@ -22,6 +22,7 @@ class Life{
 		
 
 		/*Métodos públicos da classe Life*/
+		void fillExist(char **_tab1);
 		void update(const Life &_tab1);
 		void setAlive(const Life _tab1);
 		void print(const Life _tab1);

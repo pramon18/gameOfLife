@@ -39,4 +39,11 @@ void Life::infoTab(){
 	std::cout << "Este tabuleiro está na geração: ["<< generation << "];" << std::endl;	
 	std::cout << "Este tabuleiro usa o caracter: ["<< alive_cell << "] , como célula viva;" << std::endl;	
 };
-
+void Life::fillExist(char **_tab1){
+	for(auto i(0);i<nLin;i++){
+		for(auto j(0);j<nCol;j++){
+			tab[i][j] = _tab1[i][j];
+		}
+	}
+	std::cout << "Consegui!!!" << std::endl;
+};
