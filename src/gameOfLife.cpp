@@ -19,7 +19,7 @@ Life::Life(int _nLinDefault, int _nColDefault, char _alive):nLin(_nLinDefault),n
 	nLin = _nLinDefault;
 	nCol = _nColDefault;
 	alive_cell = _alive;
-	std::cout << "Entrei no Construtor yay!!!" << std::endl;
+	
 
 };
 
@@ -34,7 +34,7 @@ Life::~Life(){
 	delete tab;
 	delete tabStable;
 	delete tabUpdate;
-	std::cout << "Entrei no Destrutor yay!!!" << std::endl;
+	
 };
 
 /*Metodo que informa o tamanho do tabuleiro*/
@@ -50,7 +50,6 @@ void Life::fillExist(char **_tab1){
 			tabStable[i][j] = _tab1[i][j];
 		}
 	}
-	std::cout << "Consegui!!!" << std::endl;
 };
 void Life::print(){
 	for(auto i(0);i<nLin;i++){
@@ -239,6 +238,7 @@ void Life::update(){
 			tab[i][j]=tabUpdate[i][j];
 		}
 	}
+	generation++;
 };
 int Life::check(char s){
 	if(s==alive_cell){
