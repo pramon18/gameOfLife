@@ -47,3 +47,29 @@ void Life::fillExist(char **_tab1){
 	}
 	std::cout << "Consegui!!!" << std::endl;
 };
+void Life::print(){
+	for(auto i(0);i<nLin;i++){
+		for(auto j(0);j<nCol;j++){
+			std::cout << tab[i][j];
+		}
+	}
+};
+
+void Life::setAlive(){
+	for(auto i(0);i<nLin;i++){
+		for(auto j(0);j<nCol;j++){
+			if(tab[i][j]==alive_cell){
+				std::cout << "Célula na posição [" << i+1 << "," << j+1 << "] está viva!!!" << std::endl;
+			}else{
+				continue;
+			}
+		}
+	}
+};
+/*void setAlive(){
+	for(auto i(0);i<nLin;i++){
+		for(auto j(0);j<nCol;j++){
+			std::cout << tab[i][j];
+		}
+	}
+};*/
