@@ -14,11 +14,8 @@ int main(int argc, char *argv[]){
 	confInit >> size_x;
 	confInit >> size_y;
 	confInit >> alive_Cell;
-	/*
-	cout << "Size X: [" << size_x << "] ;" << endl;
-	cout << "Size Y: [" << size_y << "] ;" << endl;
-	cout << "Alive Cell: [" << alive_Cell << "] ;" << endl;
-	*/
+	
+	/*Tranformando a matriz contida no arquivo em matriz de caracteres*/
 	char **init;
 	init = new char*[size_x];
 	for(auto i(0);i<size_x;i++){
@@ -30,24 +27,33 @@ int main(int argc, char *argv[]){
 			confInit.get(init[i][j]);
 		}
 	}
-	for(auto i(0);i<size_x;i++){
-		for(auto j(0);j<size_y;j++){
-			cout << init[i][j];
+	/*Criando objeto life para a simulação e passando como parâmetro as informações recebidas do arquivo*/
+	Life l(size_x,size_y,alive_Cell);
+	/*Inicializando objeto Life apartir de matriz de char*/
+	l.fillExist(init);
+	char user = ' ';//char de controle da simulação
+
+	while((user!='n')&&(user!='N')){
+		cout << "Configuração Atual:" <<endl;
+		l.print();
+		l.infoTab();
+		cout << "Deseja continuar a simulação? [y/n]: " << endl;
+		cin >> user;
+		if(user == 'y'||user == 'Y'){
+			l.update();
+		}
+		if(l.stable()){
+			l.print();
+			cout << "Configuração Estável. <<<Saindo>>>" << endl;
+			break;
 		}
 	}
-	/*string init[size_x];
-
-	for(auto i(0);i<size_x;i++){
-		getline(confInit,init[i]);
-	}
-	for(auto i(0);i<size_x;i++){
-		cout << init[i] << endl;
-	}*/
-
-	Life l(7,28);//((int)nTam[0],(int)nTam[2],(char)aliveCell);
-
-	l.infoTab();
-
+	/*Fechando arquivo de configuração inicial*/
 	confInit.close();
+	/*Deletando matriz de char usada para iniciar o objeto life*/
+	for(auto i(0);i<size_x;i++){
+		delete [] init[i];
+	}
+	delete [] init;
 	return 0;
 }
